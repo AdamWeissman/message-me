@@ -1,25 +1,27 @@
-<div class="ui small inverted menu">
-    <div class="ui container">
-        <a class="item">
-            CHAT ROOM
-        </a>
-        <a class="item">
-            MESSAGES
-        </a>
-        <div class="right menu">
-            <div class="ui dropdown item">
-            ACCOUNT <i class="dropdown icon"></i>
-                <div class="menu">
-                    <a class="item">LOG OUT</a>
-                    <%= link_to "LOG IN", login_path, class: "item" %>
-                    <a class="item">SIGN UP</a>
+
+    <div class="ui small inverted menu">
+        <div class="ui container">
+            
+            <%= link_to 'CHAT ROOM', root_path, class: 'item' %>
+            
+            <%= link_to 'MESSAGES', root_path, class: 'item' %>
+
+            <div class="right menu">
+                <div class="ui dropdown item">
+                ACCOUNT <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <% if user_signed_in? %>
+                            <%= link_to "LOG OUT", destroy_user_session_path, method: "DELETE", class: "item" %>
+                        <% else %>
+                            <%= link_to "LOG IN", new_user_session_path, class: "item" %>
+                            <%= link_to "SIGN UP", new_user_registration_path, class: "item" %>
+                        <% end %>    
+                    </div>
                 </div>
+                <div class="item">
+                    <%= link_to "SIGN UP", new_user_registration_path, class: "ui primary button" unless user_signed_in?%>
+                </div>
+        </div>
             </div>
-            <div class="item">
-                <div class="ui primary button">SIGN UP</div>
-            </div>
-    </div>
         </div>
     </div>
-</div>
-
